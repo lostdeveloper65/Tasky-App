@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:taskyapp/core/network/result.dart';
 import 'package:taskyapp/features/auth/data/firebase/auth_firebase_database.dart';
@@ -6,6 +5,7 @@ import 'package:taskyapp/features/auth/widgets/custom_text_form_field.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+  static String routeName = 'LoginScreen';
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -56,21 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadiusGeometry.circular(10),
                 ),
-                onPressed: () async {
-                  try {
-                    final credential = await FirebaseAuth.instance
-                        .signInWithEmailAndPassword(
-                          email: emailController.text,
-                          password: passwordController.text,
-                        );
-                  } on FirebaseAuthException catch (e) {
-                    if (e.code == 'user-not-found') {
-                      print('No user found for that email.');
-                    } else if (e.code == 'wrong-password') {
-                      print('Wrong password provided for that user.');
-                    }
-                  }
-                },
+                onPressed: _login,
                 child: Text(
                   'Login',
                   style: TextStyle(
