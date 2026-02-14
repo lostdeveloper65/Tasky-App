@@ -14,6 +14,8 @@ abstract class AuthFunctions {
         );
   }
 
+  
+
   static Future<void> addUser(UserModel user) async {
     await _getCollection.doc(user.id).set(user);
   }
