@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:taskyapp/core/network/result.dart';
 import 'package:taskyapp/features/auth/data/firebase/auth_firebase_database.dart';
@@ -8,6 +7,7 @@ import 'package:taskyapp/features/auth/widgets/custom_text_form_field.dart';
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
+  static const String routeName = 'RegisterScreen';
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
