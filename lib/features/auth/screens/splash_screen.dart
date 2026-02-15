@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taskyapp/core/constants/assets_class.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:taskyapp/features/auth/screens/login_screen.dart';
+import 'package:taskyapp/features/auth/screens/onboarding.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+      Navigator.pushReplacementNamed(context, OnboardingScreen.routeName);
     });
   }
 
@@ -31,13 +31,13 @@ class _SplashScreenState extends State<SplashScreen> {
             FadeInLeft(
               duration: Duration(milliseconds: 900),
               // animate: true,
-              child: Image.asset(AssetsConstants.taskIcon),
+              child: Image.asset(AssetsConstants.taskIcon_2x),
             ),
             BounceInDown(
               duration: Duration(milliseconds: 900),
               delay: Duration(milliseconds: 600),
               from: 50,
-              child: Image.asset(AssetsConstants.yIcon),
+              child: Image.asset(AssetsConstants.yIcon_2x),
             ),
           ],
         ),
