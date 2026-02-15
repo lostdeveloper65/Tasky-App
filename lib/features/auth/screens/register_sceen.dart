@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:taskyapp/core/helper/validator.dart';
 import 'package:taskyapp/core/network/result.dart';
+import 'package:taskyapp/core/utils/app_dialog.dart';
 import 'package:taskyapp/features/auth/data/firebase/auth_firebase_database.dart';
 import 'package:taskyapp/features/auth/data/model/user_model.dart';
+import 'package:taskyapp/features/auth/screens/login_screen.dart';
 import 'package:taskyapp/features/auth/widgets/custom_text_form_field.dart';
+import 'package:taskyapp/features/home/screens/home_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -22,6 +26,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 100, right: 24, left: 24),
         child: Form(
@@ -44,6 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 hintText: 'enter username...',
                 controller: userNameController,
                 icon: Icons.person_2_outlined,
+                validator: CustomValidator.validateName,
               ),
               CustomTextFormField(
                 title: 'Email',
@@ -51,18 +57,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
                 icon: Icons.email_outlined,
+                validator: CustomValidator.validateEmail,
               ),
               CustomTextFormField(
                 title: 'Password',
                 hintText: 'enter password...',
                 controller: passwordController,
                 isPassword: true,
+                validator: CustomValidator.validatePassword,
               ),
               CustomTextFormField(
                 title: 'Confirm Password',
                 hintText: 'confirm password...',
                 controller: confirmPasswordController,
                 isPassword: true,
+                // validator: (){},
               ),
               SizedBox(height: 50),
               MaterialButton(
@@ -88,7 +97,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
 
       floatingActionButton: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
+        },
         child: Row(
           spacing: 3,
           mainAxisAlignment: .center,
@@ -117,6 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void _registerUser() async {
     if (formKey.currentState!.validate()) {
+      AppDialog.showLoading(context);
       final result = await AuthFunctions.registerUser(
         user: UserModel(
           email: emailController.text,
@@ -127,8 +139,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       Navigator.of(context).pop();
       switch (result) {
         case Success<UserModel>():
-          Navigator.of(context).pop();
+          Navigator.of(context).pushNamed(LoginScreen.routeName);
         case ErrorState<UserModel>():
+          AppDialog.showError(context, result.error);
       }
     }
   }

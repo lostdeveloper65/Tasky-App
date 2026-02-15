@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -147,7 +146,7 @@ List<OnboardingData> dataOnBoarding() {
     OnboardingData(
       title: 'Manage your tasks',
       description:
-          'You can easily manage all of your daily tasks in DoMe for free',
+          'You can easily manage all of your daily tasks in Tasky for free',
       image: AssetsConstants.onboarding_1,
     ),
     OnboardingData(
@@ -157,7 +156,7 @@ List<OnboardingData> dataOnBoarding() {
       image: AssetsConstants.onboarding_2,
     ),
     OnboardingData(
-      title: 'Orgonaize your tasks',
+      title: 'Organaize your tasks',
       description:
           'You can organize your daily tasks by adding your tasks into separate categories',
       image: AssetsConstants.onboarding_3,
