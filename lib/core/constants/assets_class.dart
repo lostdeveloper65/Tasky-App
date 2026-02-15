@@ -7,6 +7,9 @@ abstract class AssetsConstants {
   static String taskyIcon = 'assets/icons/tasky_icon.png';
   static String emptyHomeScreen = 'assets/images/empty_home_screen.png';
   static String logOutIcon = 'assets/icons/logout.png';
+  static String taskIcon_2x = 'assets/icons/Task.png';
+  static String yIcon_2x = 'assets/icons/y.png';
+
 
 
 }

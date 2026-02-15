@@ -3,7 +3,7 @@ const String emailRegexString =
 const String passwordRegexString = r'^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@]{6,}$';
 const String usernameRegexString = r'^[a-zA-Z0-9,.-]+$';
 
-abstract class Validator {
+abstract class CustomValidator {
   static String? validateEmail(String? val) {
     final RegExp emailRegex = RegExp(emailRegexString);
     if (val == null || val.trim().isEmpty) {

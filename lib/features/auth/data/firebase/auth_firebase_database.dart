@@ -14,8 +14,6 @@ abstract class AuthFunctions {
         );
   }
 
-  
-
   static Future<void> addUser(UserModel user) async {
     await _getCollection.doc(user.id).set(user);
   }
@@ -32,9 +30,9 @@ abstract class AuthFunctions {
       return Success<String>(user.user?.uid ?? "");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        return ErrorState<String>('USer not found please register now');
+        return ErrorState<String>('User not found please register now');
       } else {
-        return ErrorState<String>('Worng password');
+        return ErrorState<String>('Wrong password');
       }
     } catch (e) {
       return ErrorState<String>('Error');
@@ -56,9 +54,20 @@ abstract class AuthFunctions {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         return ErrorState<UserModel>('The password provided is too weak.');
-      } else{
-        return ErrorState<UserModel>('The account already exists for that email.');
+      } else {
+        return ErrorState<UserModel>(
+          'The account already exists for that email.',
+        );
       }
+    }
+  }
+
+  static Future<Result<void>> signOutUser() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      return Success<void>(null);
+    } catch (e) {
+      return ErrorState<void>(e.toString());
     }
   }
 }

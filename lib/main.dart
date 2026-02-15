@@ -20,13 +20,13 @@ class TaskyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: HomeScreen.routeName,
+      initialRoute: LoginScreen.routeName,
       routes: {
-        LoginScreen.routeName: (context) => LoginScreen(),
-        RegisterScreen.routeName: (context) => RegisterScreen(),
-        HomeScreen.routeName: (context) => HomeScreen(),
         SplashScreen.routeName: (context) => SplashScreen(),
         OnboardingScreen.routeName: (context) => OnboardingScreen(),
+        RegisterScreen.routeName: (context) => RegisterScreen(),
+        LoginScreen.routeName: (context) => LoginScreen(),
+        HomeScreen.routeName: (context) => HomeScreen(),
       },
     );
   }
